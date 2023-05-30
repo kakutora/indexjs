@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>socket.io chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
+  </head>
+  <body>
+    <button>ボタン</button>
+    <script>
+      var socketio = io();
+      document.addEventListener("DOMContentLoaded", function () {
+        var btn = document.querySelector("button");
+        let obj = {
+          name: "John",
+          num: 10,
+        };
+
+        btn.addEventListener("click", function (event) {
+          socketio.emit("obj", obj);
+        });
+
+        socketio.on("obj", function (val) {
+          console.log(val.name);
+          console.log(val.num);
+        });
+      });
+    </script>
+  </body>
+</html>
